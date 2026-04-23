@@ -317,7 +317,7 @@ function Confession({ onSubmit }) {
 
   // Letter typewriter state
 const letterParagraphs = [
-  "Hi Larrence,",
+  "My Dearest Larrence,",
   "I've known you for a year and four months now, and in that time, we've created memories that I genuinely hold close to my heart.",
   "While I was working on this, I came across a quote on TikTok that felt a little too familiar, something I've actually seen a few times during our journey. It goes: \"When we first met, I wasn't looking for love. I was running away from it. But you were so kind and gentle that I felt my heart slowly opening up to you… and before I knew it, I was head over heels in love with you.\"",
   "And honestly, that's exactly what happened with us.",
