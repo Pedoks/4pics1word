@@ -77,15 +77,14 @@ router.post("/send-email", async (req, res) => {
       <div class="header">
         <div style="font-size:48px;margin-bottom:12px;">🌹</div>
         <h1>She Said Yes!</h1>
-        <p>Your message reached her heart, Alfred.</p>
+        <p>Your message reached her boss</p>
       </div>
       <div class="body">
         <p class="big-text">"May I Finally Court You Properly?"<br/><span style="color:#f43f5e;">She said YES. ❤️</span></p>
 
         <div class="info-box">
           <div class="info-row">
-            <span class="label">Her Name</span>
-            <span class="value">Red 💕</span>
+            
           </div>
           <div class="info-row">
             <span class="label">Her Email</span>
@@ -101,13 +100,10 @@ router.post("/send-email", async (req, res) => {
           </div>
         </div>
 
-        <p style="color:#6b7280;font-size:14px;text-align:center;line-height:1.6;">
-          Now go plan the best dinner of your life.<br/>
-          She's worth every detail. 🌹
-        </p>
+
       </div>
       <div class="footer">
-        <p>Sent from your confession game • Made with ❤️ by Alfred</p>
+
       </div>
     </div>
   </div>
