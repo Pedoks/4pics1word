@@ -6,8 +6,7 @@
   },
   "scripts": {
     "start": "node backend/server.js",
-    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "postinstall": "npm run build"
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "dependencies": {
     "cors": "^2.8.5",
