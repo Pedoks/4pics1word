@@ -134,13 +134,12 @@ function Welcome({ onStart }) {
     <div className="page-bg min-h-screen flex flex-col items-center justify-center px-6">
       <Petals />
       <div className="glass-card w-full max-w-xs text-center fade-in">
-        <div className="text-5xl mb-5 float-anim">❤️</div>
         <h1 className="font-display text-4xl text-blue-100 mb-2">Hello, Larrence</h1>
         <p className="font-body text-blue-300 mb-1">Let's play a game.</p>
         <p className="font-body text-slate-400 text-sm mb-8">
           4 levels · 4 pictures each<br />One word per level
         </p>
-        <button onClick={onStart} className="btn-primary w-full">Start Game 🎮</button>
+        <button onClick={onStart} className="btn-primary w-full">Start Game</button>
       </div>
     </div>
   );
@@ -173,7 +172,6 @@ function Game({ onComplete }) {
     setSelected(newSelected);
     setError("");
 
-    // auto-check when full
     if (newSelected.length === answer.length) {
       setChecking(true);
       const guess = newSelected.map((s) => s.letter).join("");
@@ -205,59 +203,104 @@ function Game({ onComplete }) {
   };
 
   return (
-    <div className="page-bg min-h-screen flex flex-col items-center justify-start px-4 pt-5 pb-10">
-      <div className="w-full max-w-sm">
-        {/* Header */}
-        <div className="mb-3 fade-in">
-          <div className="flex justify-between items-center mb-2">
-            <span className="font-body text-blue-300 text-sm font-medium">
+    <div
+      style={{
+        minHeight: "100dvh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "12px 12px 16px",
+        overflow: "hidden",
+      }}
+      className="page-bg"
+    >
+      <div style={{ width: "100%", maxWidth: "400px", display: "flex", flexDirection: "column", gap: "8px", flex: 1 }}>
+
+        {/* ── Header: level + progress bar ── */}
+        <div className="fade-in" style={{ flexShrink: 0 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+            <span className="font-body" style={{ color: "#93c5fd", fontSize: "13px", fontWeight: 500 }}>
               Level {level + 1} / {ANSWERS.length}
             </span>
-            <span className="font-body text-slate-400 text-xs italic">{LEVELS[level].hint}</span>
+            <span className="font-body" style={{ color: "#64748b", fontSize: "11px", fontStyle: "italic" }}>
+              {LEVELS[level].hint}
+            </span>
           </div>
-          <div className="flex gap-2">
+          <div style={{ display: "flex", gap: "6px" }}>
             {ANSWERS.map((_, i) => (
               <div
                 key={i}
-                className={`h-2 flex-1 rounded-full transition-all duration-500 ${
-                  i < level ? "bg-amber-500" : i === level ? "bg-rose-300" : "bg-slate-800"
-                }`}
+                style={{
+                  height: "6px",
+                  flex: 1,
+                  borderRadius: "9999px",
+                  transition: "all 0.5s",
+                  background: i < level ? "#f59e0b" : i === level ? "#fda4af" : "#1e293b",
+                }}
               />
             ))}
           </div>
         </div>
 
-        {/* Completed words so far */}
-        <div className="flex gap-2 flex-wrap mb-3 min-h-7">
+        {/* ── Completed words so far ── */}
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", minHeight: "28px", flexShrink: 0 }}>
           {ANSWERS.slice(0, level).map((w, i) => (
             <span
               key={i}
-              className="font-body text-blue-300 text-sm bg-white/70 px-3 py-1 rounded-lg border border-slate-600 fade-in font-medium"
+              className="font-body fade-in"
+              style={{
+                color: "#93c5fd",
+                fontSize: "12px",
+                background: "rgba(255,255,255,0.08)",
+                padding: "3px 10px",
+                borderRadius: "8px",
+                border: "1px solid #334d6e",
+                fontWeight: 500,
+              }}
             >
               {w}
             </span>
           ))}
         </div>
 
-        {/* 2x2 images */}
-        <div className={`grid grid-cols-2 gap-2 mb-5 ${shake ? "shake" : ""}`}>
+        {/* ── 2×2 image grid ── */}
+        <div
+          className={shake ? "shake" : ""}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "6px",
+            flexShrink: 0,
+          }}
+        >
           {LEVELS[level].images.map((src, i) => (
             <div
               key={i}
-              className="relative rounded-xl overflow-hidden aspect-square bg-slate-900 border-2 border-slate-700"
+              style={{
+                position: "relative",
+                borderRadius: "12px",
+                overflow: "hidden",
+                aspectRatio: "1",
+                background: "#0f172a",
+                border: "2px solid #1e3a5f",
+              }}
             >
               <img
                 src={src}
                 alt=""
-                className="w-full h-full object-cover"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "flex";
                 }}
               />
               <div
-                className="absolute inset-0 items-center justify-center text-4xl bg-slate-900"
-                style={{ display: "none" }}
+                style={{
+                  position: "absolute", inset: 0,
+                  display: "none",
+                  alignItems: "center", justifyContent: "center",
+                  fontSize: "2rem", background: "#0f172a",
+                }}
               >
                 {LEVELS[level].emojis[i]}
               </div>
@@ -265,8 +308,8 @@ function Game({ onComplete }) {
           ))}
         </div>
 
-        {/* Answer blanks */}
-        <div className="flex justify-center gap-2 mb-2">
+        {/* ── Answer blanks ── */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "6px", flexShrink: 0 }}>
           {Array.from({ length: answer.length }).map((_, i) => (
             <div
               key={i}
@@ -274,37 +317,50 @@ function Game({ onComplete }) {
               className={`letter-tile answer-tile ${
                 correct ? "correct-tile" : selected[i] ? "filled" : "empty"
               }`}
+              style={{ width: "36px", height: "40px", fontSize: "15px" }}
             >
               {selected[i]?.letter || ""}
             </div>
           ))}
         </div>
 
-        {/* Status message */}
-        <div className="h-6 text-center mb-4">
+        {/* ── Status message ── */}
+        <div style={{ height: "20px", textAlign: "center", flexShrink: 0 }}>
           {correct && (
-            <p className="text-emerald-400 font-body text-sm fade-in">
+            <p className="font-body fade-in" style={{ color: "#34d399", fontSize: "13px" }}>
               ✓ "{answer}"
             </p>
           )}
           {error && !correct && (
-            <p className="text-blue-300 font-body text-xs fade-in">{error}</p>
+            <p className="font-body fade-in" style={{ color: "#93c5fd", fontSize: "12px" }}>
+              {error}
+            </p>
           )}
         </div>
 
-        {/* Letter pool */}
-        <div className="flex flex-wrap justify-center gap-2">
+        {/* ── Letter pool ── */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "6px",
+            flexShrink: 0,
+          }}
+        >
           {pool.map((tile) => (
             <button
               key={tile.id}
               onClick={() => tapPoolLetter(tile)}
               disabled={tile.used || correct}
               className={`letter-tile pool-tile ${tile.used ? "used" : ""}`}
+              style={{ width: "36px", height: "40px", fontSize: "14px" }}
             >
               {tile.letter}
             </button>
           ))}
         </div>
+
       </div>
     </div>
   );
@@ -786,10 +842,11 @@ export default function App() {
         .font-display { font-family: 'Cormorant Garamond', serif; }
         .font-body    { font-family: 'DM Sans', sans-serif; }
 
-        .page-bg {
-          background: linear-gradient(135deg, #0d1f35 0%, #1a2f4a 40%, #1e3a5f 70%, #0f172a 100%);
-          position: relative; overflow: hidden;
-        }
+.page-bg {
+  background: linear-gradient(135deg, #0d1f35 0%, #1a2f4a 40%, #1e3a5f 70%, #0f172a 100%);
+  position: relative;
+  background-attachment: fixed;
+}
         .page-bg::before {
           content: '';
           position: fixed; inset: 0;
