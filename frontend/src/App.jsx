@@ -683,8 +683,8 @@ if (phase === "form") return (
         {/* Checkboxes */}
         <div className="space-y-3 mb-5">
           {[
-            { val: check1, set: setCheck1, label: "I agree to Alfred's heartfelt plea 💌" },
-            { val: check2, set: setCheck2, label: "I accept a dinner date in May 2026 🍽️" },
+            { val: check1, set: setCheck1, label: "I agree to Alfred's heartfelt plea " },
+            { val: check2, set: setCheck2, label: "I accept a dinner date in May 2026 git add ." },
           ].map(({ val, set, label }, i) => (
             <label key={i} className="flex items-start gap-3 cursor-pointer group">
               <div
@@ -709,7 +709,7 @@ if (phase === "form") return (
         {/* Date */}
         <div className="mb-4">
           <label className="font-body text-xs mb-2 block uppercase tracking-wide" style={{ color: "#94a3b8" }}>
-            Pick a date 📅
+            Pick a date 
           </label>
           <div className="flex gap-2">
             {["May 2, 2026", "May 3, 2026"].map((d) => (
@@ -734,7 +734,7 @@ if (phase === "form") return (
         {/* Time */}
         <div className="mb-4">
           <label className="font-body text-xs mb-2 block uppercase tracking-wide" style={{ color: "#94a3b8" }}>
-            Pick a time 🕐
+            Pick a time 
           </label>
           <div className="grid grid-cols-3 gap-2">
             {["4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM"].map((t) => (
