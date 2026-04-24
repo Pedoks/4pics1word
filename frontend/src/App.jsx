@@ -684,7 +684,7 @@ if (phase === "form") return (
         <div className="space-y-3 mb-5">
           {[
             { val: check1, set: setCheck1, label: "I agree to Alfred's heartfelt plea " },
-            { val: check2, set: setCheck2, label: "I accept a dinner date in May 2026 git add ." },
+            { val: check2, set: setCheck2, label: "I accept a dinner date in May 2026 " },
           ].map(({ val, set, label }, i) => (
             <label key={i} className="flex items-start gap-3 cursor-pointer group">
               <div
